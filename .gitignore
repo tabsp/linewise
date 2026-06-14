@@ -1,0 +1,16 @@
+node_modules
+exampleSite/public
+resources
+.hugo_build.lock
+.env
+.env.*
+.DS_Store
+.pnpm-store
+
+test-results/
+playwright-report/
+
+.vscode/
+.idea/
+
+*.log

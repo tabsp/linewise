@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ $pages := sort .Pages "Date" "desc" }}
+  {{ partial "page-list.html" (dict
+    "Pages" $pages
+    "Eyebrow" ":tag"
+    "Title" (printf "#%s" .Title)
+    "Description" (printf "Buffers tagged %s." .Title)
+  ) }}
+{{ end }}

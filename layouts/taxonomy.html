@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <section class="find-list" aria-label="Tags">
+    <header class="section-header">
+      <p class="eyebrow">:tags</p>
+      <h1>Tags</h1>
+      <p>Jump to a topic mark.</p>
+    </header>
+    <ol class="buffers" data-linewise-list>
+      {{ range .Data.Terms.Alphabetical }}
+        <li>
+          <a
+            class="buffer-row"
+            href="{{ .Page.RelPermalink }}"
+            data-linewise-item
+            data-linewise-title="#{{ .Page.Title }}"
+            data-filter-key="{{ .Page.Title }} {{ .Count }}"
+          >
+            <span class="buffer-number">#</span>
+            <span class="buffer-flags">{{ .Count }}</span>
+            <span class="buffer-title">
+              <strong>#{{ .Page.Title }}</strong>
+              <span>{{ .Count }} {{ cond (eq .Count 1) "buffer" "buffers" }}</span>
+            </span>
+          </a>
+        </li>
+      {{ end }}
+    </ol>
+  </section>
+{{ end }}

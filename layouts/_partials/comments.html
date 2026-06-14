@@ -1,0 +1,33 @@
+{{ $comments := site.Params.linewise.comments }}
+{{ if and $comments (eq $comments.provider "giscus") }}
+  {{ with $comments.giscus }}
+    {{ if and .repo .repoId .category .categoryId }}
+      {{ $theme := .theme | default "https://linewise.tabsp.com/giscus-theme.css" }}
+      {{ if eq $theme "/giscus-theme.css" }}
+        {{ $theme = "giscus-theme.css" }}
+      {{ end }}
+      {{ if eq $theme "giscus-theme.css" }}
+        {{ $theme = absURL $theme }}
+      {{ end }}
+      <section class="giscus-comments" aria-label="Comments">
+        <div class="giscus"></div>
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="{{ .repo }}"
+          data-repo-id="{{ .repoId }}"
+          data-category="{{ .category }}"
+          data-category-id="{{ .categoryId }}"
+          data-mapping="{{ .mapping | default `pathname` }}"
+          data-strict="{{ .strict | default `1` }}"
+          data-reactions-enabled="{{ .reactionsEnabled | default `1` }}"
+          data-emit-metadata="{{ .emitMetadata | default `0` }}"
+          data-input-position="{{ .inputPosition | default `bottom` }}"
+          data-theme="{{ $theme }}"
+          data-lang="{{ .lang | default site.Language.Lang }}"
+          data-loading="{{ .loading | default `lazy` }}"
+          crossorigin="anonymous"
+          async></script>
+      </section>
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,48 @@
+<nav class="command-bar" aria-label="Primary" data-lw-commandbar>
+  <button
+    type="button"
+    class="palette-backdrop"
+    data-close-palette
+    aria-label="Close command palette"></button>
+  <a class="leader" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} home">
+    {{ partial "icon.html" (dict "name" "terminal") }}
+  </a>
+  <form class="command-input" data-command-form data-lw-command aria-label="Command line">
+    <label class="prompt" for="linewise-command">:</label>
+    <input
+      id="linewise-command"
+      data-command-input
+      data-lw-command-input
+      type="text"
+      value=""
+      autocomplete="off"
+      spellcheck="false"
+      aria-describedby="command-suggestions"
+    >
+    <span class="cursor" aria-hidden="true"></span>
+    <div
+      id="command-suggestions"
+      class="command-suggestions"
+      data-command-suggestions
+      aria-label="Command suggestions"
+    ></div>
+  </form>
+  <div class="commands">
+    <a href="{{ site.Home.RelPermalink }}" data-command=":buffers">
+      {{ partial "icon.html" (dict "name" "list") }}
+      <span>buffers</span>
+    </a>
+    <a href="{{ `/posts/` | relURL }}" data-command=":posts">
+      {{ partial "icon.html" (dict "name" "history") }}
+      <span>posts</span>
+    </a>
+    <a href="{{ `/tags/` | relURL }}" data-command=":tags">
+      {{ partial "icon.html" (dict "name" "hash") }}
+      <span>tags</span>
+    </a>
+    <a href="{{ `/find/` | relURL }}" data-command=":find">
+      {{ partial "icon.html" (dict "name" "search") }}
+      <span>find</span>
+    </a>
+  </div>
+</nav>

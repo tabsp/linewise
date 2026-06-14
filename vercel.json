@@ -1,0 +1,19 @@
+{
+  "buildCommand": "chmod a+x build.sh && ./build.sh",
+  "outputDirectory": "exampleSite/public",
+  "headers": [
+    {
+      "source": "/giscus-theme.css",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "text/css; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{{ $pages := .Pages }}
+<section class="buffer-list" aria-label="{{ .Title }}">
+  <header class="section-header">
+    <p class="eyebrow">{{ .Eyebrow }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <ol class="buffers" data-linewise-list>
+    {{ range $index, $page := $pages }}
+      <li>
+        <a
+          class="buffer-row"
+          href="{{ $page.RelPermalink }}"
+          data-linewise-item
+          data-linewise-title="{{ $page.Title }}"
+          data-filter-key="{{ $page.Title }} {{ $page.Description }} {{ delimit ($page.Params.tags | default slice) ` ` }}"
+        >
+          <span class="buffer-number">{{ add $index 1 }}</span>
+          <span class="buffer-flags">buf</span>
+          <span class="buffer-title">
+            <strong>{{ $page.Title }}</strong>
+            {{ with $page.Description }}<span>{{ . }}</span>{{ end }}
+          </span>
+          <span class="buffer-meta">
+            {{ partial "post-meta.html" $page }}
+          </span>
+        </a>
+      </li>
+    {{ end }}
+  </ol>
+</section>

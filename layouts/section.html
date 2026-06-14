@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ $pages := .Pages }}
+  {{ if eq .Section "posts" }}
+    {{ $pages = sort .Pages "Date" "desc" }}
+  {{ end }}
+  {{ partial "page-list.html" (dict
+    "Pages" $pages
+    "Eyebrow" ":oldfiles"
+    "Title" .Title
+    "Description" (.Description | default "All published buffers in reverse chronological order.")
+  ) }}
+{{ end }}

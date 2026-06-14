@@ -1,0 +1,14 @@
+name = "Linewise"
+license = "MIT"
+licenselink = "https://github.com/tabsp/linewise/blob/main/LICENSE"
+description = "A Vim-inspired Hugo theme for personal blogs."
+homepage = "https://github.com/tabsp/linewise"
+demosite = "https://linewise.tabsp.com"
+images = ["images/screenshot.png"]
+tags = ["blog", "minimal", "vim", "search"]
+features = ["blog", "tags", "rss", "search", "keyboard"]
+min_version = "0.146.0"
+
+[author]
+name = "tabsp"
+homepage = "https://github.com/tabsp"

@@ -1,0 +1,7 @@
+exampleSite/public
+layouts
+node_modules
+pnpm-lock.yaml
+playwright-report
+resources
+test-results

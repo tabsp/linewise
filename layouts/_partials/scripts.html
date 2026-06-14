@@ -1,0 +1,3 @@
+{{ $opts := dict "target" "es2020" "format" "esm" "minify" hugo.IsProduction }}
+{{ $js := resources.Get "ts/linewise.ts" | js.Build $opts | fingerprint }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

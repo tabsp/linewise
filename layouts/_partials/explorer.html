@@ -1,0 +1,90 @@
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $posts = first 8 (sort $posts "Date" "desc") }}
+{{ $tags := site.Taxonomies.tags.Alphabetical }}
+{{ $tags = first 10 $tags }}
+<aside class="file-explorer" aria-label="File explorer" id="linewise-explorer" data-lw-explorer>
+  <div class="explorer-title">
+    <span class="explorer-title-group">
+      <button
+        type="button"
+        class="explorer-collapse"
+        data-open-explorer
+        aria-label="Toggle file explorer"
+        aria-expanded="false"
+        aria-controls="linewise-explorer"
+      >
+        {{ partial "icon.html" (dict "name" "files") }}
+      </button>
+      <span>EXPLORER</span>
+    </span>
+    <button type="button" class="explorer-close" data-close-explorer aria-label="Close file explorer">
+      {{ partial "icon.html" (dict "name" "x") }}
+    </button>
+  </div>
+  <nav class="tree" aria-label="Site tree">
+    <details open>
+      <summary>posts</summary>
+      <ol>
+        {{ range $posts }}
+          <li>
+            <a
+              href="{{ .RelPermalink }}"
+              title="{{ .Title }}"
+              class="{{ if eq $.RelPermalink .RelPermalink }}is-current{{ end }}"
+              {{ if eq $.RelPermalink .RelPermalink }}aria-current="page"{{ end }}
+            >
+              <span class="tree-icon tree-icon-md" aria-hidden="true">MD</span>
+              <span>{{ .Title }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ol>
+    </details>
+    <details open>
+      <summary>tags</summary>
+      <ol>
+        {{ range $tags }}
+          <li>
+            <a
+              href="{{ .Page.RelPermalink }}"
+              class="{{ if eq $.RelPermalink .Page.RelPermalink }}is-current{{ end }}"
+              {{ if eq $.RelPermalink .Page.RelPermalink }}aria-current="page"{{ end }}
+            >
+              <span class="tree-icon" aria-hidden="true">
+                {{ partial "icon.html" (dict "name" "hash") }}
+              </span>
+              <span>{{ .Page.Title }}</span>
+              <small>{{ .Count }}</small>
+            </a>
+          </li>
+        {{ end }}
+      </ol>
+    </details>
+    <ol class="tree-root">
+      <li>
+        <a href="{{ site.Home.RelPermalink }}" class="{{ if .IsHome }}is-current{{ end }}" {{ if .IsHome }}aria-current="page"{{ end }}>
+          <span class="tree-icon" aria-hidden="true">
+            {{ partial "icon.html" (dict "name" "list") }}
+          </span>
+          <span>buffers</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ `/posts/` | relURL }}" class="{{ if and (eq .Section `posts`) (not .IsPage) }}is-current{{ end }}">
+          <span class="tree-icon" aria-hidden="true">
+            {{ partial "icon.html" (dict "name" "history") }}
+          </span>
+          <span>posts</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ `/find/` | relURL }}" class="{{ if eq .RelPermalink (`/find/` | relURL) }}is-current{{ end }}">
+          <span class="tree-icon" aria-hidden="true">
+            {{ partial "icon.html" (dict "name" "list-filter") }}
+          </span>
+          <span>find</span>
+        </a>
+      </li>
+    </ol>
+  </nav>
+</aside>

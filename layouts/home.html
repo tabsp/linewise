@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ $posts = sort $posts "Date" "desc" }}
+  {{ $posts = first 8 $posts }}
+  {{ partial "page-list.html" (dict
+    "Pages" $posts
+    "Eyebrow" ":ls"
+    "Title" "Open buffers"
+    "Description" "Recently visited buffers. Fresh sessions start with the latest posts."
+  ) }}
+{{ end }}

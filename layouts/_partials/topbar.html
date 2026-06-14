@@ -1,0 +1,28 @@
+{{ $current := .Title }}
+{{ with .File }}
+  {{ $current = .ContentBaseName }}
+{{ end }}
+{{ if .IsHome }}
+  {{ $current = "buffers" }}
+{{ end }}
+{{ $isPersistent := or .IsHome (eq .Section "posts") }}
+<nav
+  class="bufferline"
+  aria-label="Open buffers"
+  data-bufferline
+  data-lw-bufferline
+  data-current-buffer="{{ $current }}"
+  data-current-href="{{ .RelPermalink }}"
+>
+  {{ if $isPersistent }}
+    <div class="buffer-tab is-current" data-buffer-tab data-buffer-label="{{ $current }}" title="{{ $current }}">
+      <a href="{{ .RelPermalink }}" title="{{ $current }}">
+        <span class="tab-modified">cur</span>
+        <span>{{ $current }}</span>
+      </a>
+      <button class="tab-close" type="button" aria-label="Close {{ $current }}" data-close-buffer="{{ .RelPermalink }}">
+        {{ partial "icon.html" (dict "name" "x") }}
+      </button>
+    </div>
+  {{ end }}
+</nav>

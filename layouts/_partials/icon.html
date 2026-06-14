@@ -1,0 +1,55 @@
+{{- $name := .name -}}
+{{- $class := .class | default "" -}}
+{{- $attrs := printf `class="icon %s" aria-hidden="true" focusable="false"` $class -}}
+{{- if eq $name "terminal" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="4 17 10 11 4 5"></polyline>
+    <line x1="12" x2="20" y1="19" y2="19"></line>
+  </svg>
+{{- else if eq $name "list" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="8" x2="21" y1="6" y2="6"></line>
+    <line x1="8" x2="21" y1="12" y2="12"></line>
+    <line x1="8" x2="21" y1="18" y2="18"></line>
+    <line x1="3" x2="3.01" y1="6" y2="6"></line>
+    <line x1="3" x2="3.01" y1="12" y2="12"></line>
+    <line x1="3" x2="3.01" y1="18" y2="18"></line>
+  </svg>
+{{- else if eq $name "history" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+    <path d="M3 3v6h6"></path>
+    <path d="M12 7v5l4 2"></path>
+  </svg>
+{{- else if eq $name "hash" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" x2="20" y1="9" y2="9"></line>
+    <line x1="4" x2="20" y1="15" y2="15"></line>
+    <line x1="10" x2="8" y1="3" y2="21"></line>
+    <line x1="16" x2="14" y1="3" y2="21"></line>
+  </svg>
+{{- else if eq $name "search" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.3-4.3"></path>
+  </svg>
+{{- else if eq $name "files" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 7h-8l-2-2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z"></path>
+  </svg>
+{{- else if eq $name "list-filter" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 6h18"></path>
+    <path d="M7 12h10"></path>
+    <path d="M10 18h4"></path>
+  </svg>
+{{- else if eq $name "x" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18"></path>
+    <path d="m6 6 12 12"></path>
+  </svg>
+{{- else if eq $name "github" -}}
+  <svg {{ $attrs | safeHTMLAttr }} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.1 2.5 1.5.1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.5-2.8 5.5-5.4 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"></path>
+  </svg>
+{{- end -}}

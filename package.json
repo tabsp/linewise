@@ -1,0 +1,43 @@
+{
+  "name": "@tabsp/linewise",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.24.0",
+  "license": "MIT",
+  "description": "Linewise is a Vim-inspired Hugo theme for personal blogs.",
+  "author": "tabsp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tabsp/linewise.git"
+  },
+  "homepage": "https://github.com/tabsp/linewise#readme",
+  "bugs": {
+    "url": "https://github.com/tabsp/linewise/issues"
+  },
+  "keywords": [
+    "hugo",
+    "theme",
+    "blog",
+    "vim",
+    "search"
+  ],
+  "scripts": {
+    "dev": "hugo server --source exampleSite --themesDir ../.. --bind 127.0.0.1 --port 4322",
+    "build": "bash build.sh",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "smoke": "node scripts/smoke-install.mjs",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@typescript-eslint/parser": "^8.60.1",
+    "eslint": "^10.4.1",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
+  }
+}

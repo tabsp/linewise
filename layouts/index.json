@@ -1,0 +1,33 @@
+[
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $posts = sort $posts "Date" "desc" -}}
+{{- $tags := site.Taxonomies.tags -}}
+{{- $first := true -}}
+{{- range $posts -}}
+  {{- $postTags := .Params.tags | default slice -}}
+  {{- if not $first }},{{ end -}}
+  {{- $first = false -}}
+  {
+    "type": "buffer",
+    "command": {{ printf "/ %s" .Title | jsonify }},
+    "title": {{ .Title | jsonify }},
+    "description": {{ (.Description | default .Summary | plainify) | jsonify }},
+    "href": {{ .RelPermalink | jsonify }},
+    "location": {{ delimit $postTags ", " | jsonify }},
+    "keywords": {{ slice .Title (.Description | default "") .File.ContentBaseName | append $postTags | jsonify }}
+  }
+{{- end -}}
+{{- range $tag, $pages := $tags -}}
+  {{- if not $first }},{{ end -}}
+  {{- $first = false -}}
+  {
+    "type": "tag",
+    "command": {{ printf "/ #%s" $tag | jsonify }},
+    "title": {{ printf "#%s" $tag | jsonify }},
+    "description": {{ printf "Jump to posts tagged %s." $tag | jsonify }},
+    "href": {{ printf "/tags/%s/" $tag | relURL | jsonify }},
+    "location": ":tag",
+    "keywords": {{ slice $tag (printf "#%s" $tag) | jsonify }}
+  }
+{{- end }}
+]
